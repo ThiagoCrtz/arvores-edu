@@ -1,0 +1,5 @@
+@import "tailwindcss";
+:root { color-scheme: dark; }
+body { background:#0b0f1a; color:#e5e7eb; font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif; }
+@keyframes pop { from { transform: scale(0); opacity: 0 } to { transform: scale(1); opacity: 1 } }
+.node-pop { animation: pop .35s ease-out; transform-box: fill-box; transform-origin: center; }
