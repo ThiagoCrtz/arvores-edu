@@ -180,21 +180,22 @@ export default function Lab() {
   const tone = { info: 'text-slate-300', ok: 'text-emerald-300', warn: 'text-amber-300', rotate: 'text-rose-300' };
 
   return (
-    <div className="mx-auto flex w-full max-w-7xl flex-1 flex-col gap-4 p-4 lg:flex-row">
-      <div className="h-[55vh] min-h-[360px] lg:h-auto lg:flex-1">
+    <div className="mx-auto flex w-full max-w-[1480px] flex-1 flex-col gap-5 p-4 lg:flex-row lg:p-7">
+      <div className="relative h-[55vh] min-h-[390px] overflow-hidden rounded-2xl border border-white/[.09] bg-[#101821] shadow-[0_18px_50px_rgba(0,0,0,.18)] lg:h-auto lg:min-h-[calc(100vh-124px)] lg:flex-1">
+        <div className="pointer-events-none absolute left-5 top-5 z-10"><p className="text-[10px] font-semibold uppercase tracking-[.2em] text-slate-500">canvas de exploração</p><p className="mt-1 text-sm text-slate-300">{type} <span className="text-slate-600">/</span> {size(shownRoot)} nós</p></div>
         <TreeCanvas nodes={nodes} edges={edges} highlights={override ? override.hl : hl} showAvlInfo={showInfo} />
       </div>
 
-      <aside className="flex w-full flex-col gap-4 lg:w-96">
-        <div className="grid grid-cols-2 gap-1 rounded-lg bg-slate-900 p-1">
+      <aside className="flex w-full flex-col gap-3 lg:w-[390px]">
+        <div className="grid grid-cols-2 gap-1 rounded-xl border border-white/[.08] bg-[#111923] p-1">
           {(['BST', 'AVL'] as TreeType[]).map((t) => (
-            <button key={t} onClick={() => changeType(t)} className={`${btn} ${type === t ? 'bg-indigo-500 text-white' : 'text-slate-400 hover:text-white'}`}>
+            <button key={t} onClick={() => changeType(t)} className={`${btn} ${type === t ? 'bg-amber-300 text-slate-950 shadow-[0_4px_14px_rgba(242,184,75,.18)]' : 'text-slate-400 hover:text-white'}`}>
               {t === 'BST' ? 'Árvore BST' : 'Árvore AVL'}
             </button>
           ))}
         </div>
 
-        <div className="grid grid-cols-3 gap-1 rounded-lg bg-slate-900 p-1">
+        <div className="grid grid-cols-3 gap-1 rounded-xl border border-white/[.08] bg-[#111923] p-1">
           {([['build', 'Construir', Hammer], ['steps', 'Passo a passo', ListOrdered], ['trav', 'Percursos', Route]] as const).map(([k, label, I]) => (
             <button key={k} disabled={busy} onClick={() => setTab(k)} className={`inline-flex items-center justify-center gap-1 rounded-md px-1 py-1.5 text-xs font-medium disabled:opacity-50 ${tab === k ? 'bg-slate-700 text-white' : 'text-slate-400 hover:text-white'}`}>
               <I className="size-3.5" />{label}
