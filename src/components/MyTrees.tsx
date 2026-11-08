@@ -51,25 +51,25 @@ export default function MyTrees() {
     setRows((list) => list?.filter((x) => x.id !== r.id) ?? null);
   }
 
-  const input = 'rounded-lg border border-white/10 bg-slate-900 px-3 py-2 text-sm outline-none focus:border-indigo-400';
+  const input = 'rounded-lg border border-white/10 bg-neutral-900 px-3 py-2 text-sm outline-none focus:border-teal-300';
   return (
     <div className="mx-auto w-full max-w-5xl p-4">
       <h1 className="text-2xl font-bold text-white">Minhas Árvores</h1>
-      <p className="mt-1 text-sm text-slate-400">Suas árvores salvas ficam privadas e só você consegue vê-las.</p>
+      <p className="mt-1 text-sm text-neutral-400">Suas árvores salvas ficam privadas e só você consegue vê-las.</p>
 
-      <div className="mt-5 flex flex-wrap gap-2 rounded-xl border border-white/10 bg-slate-900/50 p-3">
+      <div className="mt-5 flex flex-wrap gap-2 rounded-xl border border-white/10 bg-neutral-900/50 p-3">
         <input value={newName} maxLength={80} onChange={(e) => setNewName(e.target.value)} onKeyDown={(e) => e.key === 'Enter' && create()} placeholder="Nome da nova árvore" className={`${input} min-w-0 flex-1`} />
         <select value={newType} onChange={(e) => setNewType(e.target.value as TreeType)} className={input}>
           <option value="AVL">AVL</option><option value="BST">BST</option>
         </select>
-        <button onClick={create} className="inline-flex items-center gap-1.5 rounded-lg bg-indigo-500 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-400"><Plus className="size-4" />Nova árvore</button>
+        <button onClick={create} className="inline-flex items-center gap-1.5 rounded-lg bg-teal-400 px-4 py-2 text-sm font-medium text-neutral-950 hover:bg-teal-300"><Plus className="size-4" />Nova árvore</button>
       </div>
       {error && <p role="alert" className="mt-3 text-sm text-rose-300">{error}</p>}
 
-      {rows === null && !error && <p className="mt-8 text-sm text-slate-500">Carregando…</p>}
+      {rows === null && !error && <p className="mt-8 text-sm text-neutral-500">Carregando…</p>}
       {rows?.length === 0 && (
-        <p className="mt-8 text-sm text-slate-400">
-          Você ainda não salvou nenhuma árvore. Crie uma acima ou <Link href="/laboratorio" className="text-indigo-300 hover:underline">monte uma no Laboratório</Link> e clique em Salvar.
+        <p className="mt-8 text-sm text-neutral-400">
+          Você ainda não salvou nenhuma árvore. Crie uma acima ou <Link href="/laboratorio" className="text-teal-300 hover:underline">monte uma no Laboratório</Link> e clique em Salvar.
         </p>
       )}
 
@@ -79,14 +79,14 @@ export default function MyTrees() {
           let root = null;
           try { root = order ? restoreTree(r.nodes, r.tree_type) : null; } catch { /* Dados inválidos. */ }
           return (
-            <li key={r.id} className="flex flex-col gap-3 rounded-xl border border-white/10 bg-slate-900/60 p-4">
+            <li key={r.id} className="flex flex-col gap-3 rounded-xl border border-white/10 bg-neutral-900/60 p-4">
               <MiniTree root={root} />
               <div className="flex items-center gap-2">
                 {editing === r.id ? (
                   <>
                     <input autoFocus value={editName} maxLength={80} onChange={(e) => setEditName(e.target.value)} onKeyDown={(e) => e.key === 'Enter' && rename(r.id)} className={`${input} min-w-0 flex-1 !py-1`} />
                     <button onClick={() => rename(r.id)} aria-label="Confirmar" className="text-emerald-300"><Check className="size-4" /></button>
-                    <button onClick={() => setEditing(null)} aria-label="Cancelar" className="text-slate-400"><X className="size-4" /></button>
+                    <button onClick={() => setEditing(null)} aria-label="Cancelar" className="text-neutral-400"><X className="size-4" /></button>
                   </>
                 ) : (
                   <>
@@ -95,13 +95,13 @@ export default function MyTrees() {
                   </>
                 )}
               </div>
-              <p className="text-xs text-slate-400">
+              <p className="text-xs text-neutral-400">
                 {order ? `${size(root)} nós · altura ${height(root)}` : 'Dados inválidos'} · atualizada em {new Date(r.updated_at).toLocaleString('pt-BR', { dateStyle: 'short', timeStyle: 'short' })}
               </p>
               <div className="mt-auto flex gap-2">
-                <Link href={`/laboratorio?id=${r.id}`} className="flex-1 rounded-lg bg-indigo-500 py-1.5 text-center text-sm font-medium text-white hover:bg-indigo-400">Abrir</Link>
-                <button onClick={() => { setEditing(r.id); setEditName(r.name); }} aria-label="Renomear" title="Renomear" className="rounded-lg bg-slate-800 p-2 hover:bg-slate-700"><Pencil className="size-4" /></button>
-                <button onClick={() => del(r)} aria-label="Excluir" title="Excluir" className="rounded-lg bg-slate-800 p-2 text-rose-300 hover:bg-slate-700"><Trash2 className="size-4" /></button>
+                <Link href={`/laboratorio?id=${r.id}`} className="flex-1 rounded-lg bg-teal-400 py-1.5 text-center text-sm font-medium text-neutral-950 hover:bg-teal-300">Abrir</Link>
+                <button onClick={() => { setEditing(r.id); setEditName(r.name); }} aria-label="Renomear" title="Renomear" className="rounded-lg bg-neutral-800 p-2 hover:bg-neutral-700"><Pencil className="size-4" /></button>
+                <button onClick={() => del(r)} aria-label="Excluir" title="Excluir" className="rounded-lg bg-neutral-800 p-2 text-rose-300 hover:bg-neutral-700"><Trash2 className="size-4" /></button>
               </div>
             </li>
           );

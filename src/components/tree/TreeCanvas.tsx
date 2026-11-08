@@ -7,11 +7,11 @@ import type { Highlight } from '@/lib/trees/types';
 export type { Highlight };
 const R = 22;
 const COLORS: Record<Highlight | 'base', { fill: string; stroke: string }> = {
-  base: { fill: '#1e293b', stroke: '#6366f1' },
-  visit: { fill: '#78350f', stroke: '#fbbf24' },
-  new: { fill: '#064e3b', stroke: '#34d399' },
-  rotate: { fill: '#881337', stroke: '#fb7185' },
-  done: { fill: '#0c4a6e', stroke: '#38bdf8' },
+  base: { fill: '#171c17', stroke: '#5eead4' },
+  visit: { fill: '#134e4a', stroke: '#ccfbf1' },
+  new: { fill: '#115e59', stroke: '#99f6e4' },
+  rotate: { fill: '#404040', stroke: '#ffffff' },
+  done: { fill: '#123b38', stroke: '#5eead4' },
 };
 
 type Pos = Record<number, { x: number; y: number }>;
@@ -90,7 +90,7 @@ export default function TreeCanvas({ nodes, edges, highlights, showAvlInfo }: Pr
   };
 
   return (
-    <div ref={box} className="relative h-full w-full touch-none select-none overflow-hidden rounded-xl border border-white/10 bg-[#0d1220]">
+    <div ref={box} className="relative h-full w-full touch-none select-none overflow-hidden rounded-xl border border-white/10 bg-[#0b0e0b]">
       <svg
         className="h-full w-full cursor-grab active:cursor-grabbing"
         onWheel={(e) => { const r = e.currentTarget.getBoundingClientRect(); zoom(e.deltaY < 0 ? 1.1 : 0.9, e.clientX - r.left, e.clientY - r.top); }}
@@ -108,7 +108,7 @@ export default function TreeCanvas({ nodes, edges, highlights, showAvlInfo }: Pr
           {edges.map((e) => {
             const a = pos[e.from], b = pos[e.to];
             if (!a || !b) return null;
-            return <line key={`${e.from}-${e.to}`} x1={a.x} y1={a.y} x2={b.x} y2={b.y} stroke="#475569" strokeWidth={2} />;
+            return <line key={`${e.from}-${e.to}`} x1={a.x} y1={a.y} x2={b.x} y2={b.y} stroke="#616b61" strokeWidth={2} />;
           })}
           {nodes.map((n) => {
             const p = pos[n.value];
@@ -132,13 +132,13 @@ export default function TreeCanvas({ nodes, edges, highlights, showAvlInfo }: Pr
         </g>
       </svg>
       {!nodes.length && (
-        <p className="pointer-events-none absolute inset-0 grid place-items-center text-sm text-slate-500">
+        <p className="pointer-events-none absolute inset-0 grid place-items-center text-sm text-neutral-500">
           A árvore está vazia. Insira um valor para começar.
         </p>
       )}
       <div className="absolute right-3 top-3 flex flex-col gap-1">
         {[{ i: ZoomIn, f: () => zoom(1.2), l: 'Aproximar' }, { i: ZoomOut, f: () => zoom(1 / 1.2), l: 'Afastar' }, { i: Maximize2, f: () => setAuto(true), l: 'Ajustar à tela' }].map(({ i: I, f, l }) => (
-          <button key={l} onClick={f} aria-label={l} title={l} className="rounded-md border border-white/10 bg-slate-800/80 p-2 text-slate-300 hover:bg-slate-700">
+          <button key={l} onClick={f} aria-label={l} title={l} className="rounded-md border border-white/10 bg-neutral-800/80 p-2 text-neutral-300 hover:bg-neutral-700">
             <I className="size-4" />
           </button>
         ))}

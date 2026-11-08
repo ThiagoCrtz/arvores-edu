@@ -34,19 +34,19 @@ export default function TraversalPanel({ root, onOverride }: { root: TreeNode | 
   }, [idx, seq, onOverride]);
   useEffect(() => () => onOverride(null), [onOverride]);
 
-  const btn = 'rounded-lg bg-slate-800 p-2 text-slate-200 hover:bg-slate-700 disabled:opacity-40';
+  const btn = 'rounded-lg bg-neutral-800 p-2 text-neutral-200 hover:bg-neutral-700 disabled:opacity-40';
   const play = () => { if (idx >= seq.length) setIdx(0); setPlaying((p) => !p); };
 
   return (
     <div className="space-y-3">
-      <div className="grid grid-cols-3 gap-1 rounded-lg bg-slate-900 p-1">
+      <div className="grid grid-cols-3 gap-1 rounded-lg bg-neutral-900 p-1">
         {(Object.keys(KINDS) as Kind[]).map((k) => (
-          <button key={k} onClick={() => setKind(k)} className={`rounded-md px-2 py-1.5 text-xs font-medium ${kind === k ? 'bg-sky-500 text-white' : 'text-slate-400 hover:text-white'}`}>
+          <button key={k} onClick={() => setKind(k)} className={`rounded-md px-2 py-1.5 text-xs font-medium ${kind === k ? 'bg-sky-500 text-white' : 'text-neutral-400 hover:text-white'}`}>
             {KINDS[k].label}
           </button>
         ))}
       </div>
-      <p className="text-sm text-slate-300"><b>{KINDS[kind].label}:</b> {KINDS[kind].rule}</p>
+      <p className="text-sm text-neutral-300"><b>{KINDS[kind].label}:</b> {KINDS[kind].rule}</p>
 
       <div className="flex items-center gap-2">
         <button className={btn} onClick={() => { setPlaying(false); setIdx(0); }} aria-label="Reiniciar" title="Reiniciar"><RotateCcw className="size-4" /></button>
@@ -55,31 +55,31 @@ export default function TraversalPanel({ root, onOverride }: { root: TreeNode | 
           {playing ? <Pause className="size-4" /> : <Play className="size-4" />}
         </button>
         <button className={btn} disabled={idx >= seq.length} onClick={() => { setPlaying(false); setIdx((i) => Math.min(seq.length, i + 1)); }} aria-label="Próximo passo" title="Próximo passo"><SkipForward className="size-4" /></button>
-        <span className="ml-auto text-xs text-slate-400">{idx} / {seq.length}</span>
+        <span className="ml-auto text-xs text-neutral-400">{idx} / {seq.length}</span>
       </div>
 
-      <label className="flex items-center gap-3 text-xs text-slate-400">
+      <label className="flex items-center gap-3 text-xs text-neutral-400">
         Velocidade
         <input type="range" min={0.5} max={4} step={0.5} value={rate} onChange={(e) => setRate(+e.target.value)} className="flex-1" />
         {rate}×
       </label>
 
-      <div className="min-h-20 rounded-lg border border-white/10 bg-slate-900/60 p-3 text-sm">
-        {!seq.length ? <span className="text-slate-500">Insira valores na aba Construir para ver os percursos.</span> : idx === 0 ? (
-          <span className="text-slate-500">Pressione Iniciar ou avance passo a passo.</span>
+      <div className="min-h-20 rounded-lg border border-white/10 bg-neutral-900/60 p-3 text-sm">
+        {!seq.length ? <span className="text-neutral-500">Insira valores na aba Construir para ver os percursos.</span> : idx === 0 ? (
+          <span className="text-neutral-500">Pressione Iniciar ou avance passo a passo.</span>
         ) : (
           <>
-            <p className="mb-1 text-slate-400">Visitando o nó <b className="text-amber-300">{seq[idx - 1]}</b></p>
+            <p className="mb-1 text-neutral-400">Visitando o nó <b className="text-teal-300">{seq[idx - 1]}</b></p>
             <p className="break-words font-mono text-slate-100">
               {seq.slice(0, idx).map((v, i) => (
-                <span key={i}><span className={i === idx - 1 ? 'text-amber-300' : 'text-sky-300'}>{v}</span>{i < idx - 1 && ' → '}</span>
+                <span key={i}><span className={i === idx - 1 ? 'text-teal-300' : 'text-sky-300'}>{v}</span>{i < idx - 1 && ' → '}</span>
               ))}
             </p>
             {idx === seq.length && <p className="mt-2 text-emerald-300">Percurso completo.</p>}
           </>
         )}
       </div>
-      <p className="text-xs text-slate-500">Cores na árvore: <span className="text-amber-300">amarelo</span> = nó atual · <span className="text-sky-300">azul</span> = já visitados.</p>
+      <p className="text-xs text-neutral-500">Cores na árvore: <span className="text-teal-300">amarelo</span> = nó atual · <span className="text-sky-300">azul</span> = já visitados.</p>
     </div>
   );
 }

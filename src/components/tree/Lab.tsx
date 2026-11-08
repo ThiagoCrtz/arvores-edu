@@ -177,74 +177,74 @@ export default function Lab() {
   };
 
   const btn = 'inline-flex items-center justify-center gap-1.5 rounded-lg px-3 py-2 text-sm font-medium disabled:opacity-40';
-  const tone = { info: 'text-slate-300', ok: 'text-emerald-300', warn: 'text-amber-300', rotate: 'text-rose-300' };
+  const tone = { info: 'text-neutral-300', ok: 'text-emerald-300', warn: 'text-teal-300', rotate: 'text-rose-300' };
 
   return (
     <div className="mx-auto flex w-full max-w-[1480px] flex-1 flex-col gap-5 p-4 lg:flex-row lg:p-7">
-      <div className="relative h-[55vh] min-h-[390px] overflow-hidden rounded-2xl border border-white/[.09] bg-[#101821] shadow-[0_18px_50px_rgba(0,0,0,.18)] lg:h-auto lg:min-h-[calc(100vh-124px)] lg:flex-1">
-        <div className="pointer-events-none absolute left-5 top-5 z-10"><p className="text-[10px] font-semibold uppercase tracking-[.2em] text-slate-500">canvas de exploração</p><p className="mt-1 text-sm text-slate-300">{type} <span className="text-slate-600">/</span> {size(shownRoot)} nós</p></div>
+      <div className="relative h-[55vh] min-h-[390px] overflow-hidden rounded-2xl border border-white/[.09] bg-[#101310] shadow-[0_18px_50px_rgba(0,0,0,.18)] lg:h-auto lg:min-h-[calc(100vh-124px)] lg:flex-1">
+        <div className="pointer-events-none absolute left-5 top-5 z-10"><p className="text-[10px] font-semibold uppercase tracking-[.2em] text-neutral-500">canvas de exploração</p><p className="mt-1 text-sm text-neutral-300">{type} <span className="text-neutral-600">/</span> {size(shownRoot)} nós</p></div>
         <TreeCanvas nodes={nodes} edges={edges} highlights={override ? override.hl : hl} showAvlInfo={showInfo} />
       </div>
 
       <aside className="flex w-full flex-col gap-3 lg:w-[390px]">
-        <div className="grid grid-cols-2 gap-1 rounded-xl border border-white/[.08] bg-[#111923] p-1">
+        <div className="grid grid-cols-2 gap-1 rounded-xl border border-white/[.08] bg-[#111411] p-1">
           {(['BST', 'AVL'] as TreeType[]).map((t) => (
-            <button key={t} onClick={() => changeType(t)} className={`${btn} ${type === t ? 'bg-amber-300 text-slate-950 shadow-[0_4px_14px_rgba(242,184,75,.18)]' : 'text-slate-400 hover:text-white'}`}>
+            <button key={t} onClick={() => changeType(t)} className={`${btn} ${type === t ? 'bg-teal-300 text-neutral-950 shadow-[0_4px_14px_rgba(94,234,212,.18)]' : 'text-neutral-400 hover:text-white'}`}>
               {t === 'BST' ? 'Árvore BST' : 'Árvore AVL'}
             </button>
           ))}
         </div>
 
-        <div className="grid grid-cols-3 gap-1 rounded-xl border border-white/[.08] bg-[#111923] p-1">
+        <div className="grid grid-cols-3 gap-1 rounded-xl border border-white/[.08] bg-[#111411] p-1">
           {([['build', 'Construir', Hammer], ['steps', 'Passo a passo', ListOrdered], ['trav', 'Percursos', Route]] as const).map(([k, label, I]) => (
-            <button key={k} disabled={busy} onClick={() => setTab(k)} className={`inline-flex items-center justify-center gap-1 rounded-md px-1 py-1.5 text-xs font-medium disabled:opacity-50 ${tab === k ? 'bg-slate-700 text-white' : 'text-slate-400 hover:text-white'}`}>
+            <button key={k} disabled={busy} onClick={() => setTab(k)} className={`inline-flex items-center justify-center gap-1 rounded-md px-1 py-1.5 text-xs font-medium disabled:opacity-50 ${tab === k ? 'bg-neutral-700 text-white' : 'text-neutral-400 hover:text-white'}`}>
               <I className="size-3.5" />{label}
             </button>
           ))}
         </div>
-        <div className="flex items-center justify-between rounded-lg bg-slate-900 px-3 py-2 text-sm">
+        <div className="flex items-center justify-between rounded-lg bg-neutral-900 px-3 py-2 text-sm">
           <span>Nós: <b className="text-white">{size(shownRoot)}</b></span>
           <span>Altura: <b className="text-white">{height(shownRoot)}</b></span>
-          <label className="flex items-center gap-1.5 text-xs text-slate-400">
+          <label className="flex items-center gap-1.5 text-xs text-neutral-400">
             <input type="checkbox" checked={showInfo} onChange={(e) => setShowInfo(e.target.checked)} /> h / fb
           </label>
         </div>
         {tab === 'build' && (<>
         <div className="space-y-2">
-          <label className="text-xs text-slate-400">Inserir (separe vários por vírgula, ex.: 50, 30, 70)</label>
+          <label className="text-xs text-neutral-400">Inserir (separe vários por vírgula, ex.: 50, 30, 70)</label>
           <div className="flex gap-2">
             <input value={input} onChange={(e) => setInput(e.target.value)} onKeyDown={(e) => e.key === 'Enter' && onInsert()}
-              placeholder="50, 30, 70" inputMode="numeric" className="min-w-0 flex-1 rounded-lg border border-white/10 bg-slate-900 px-3 py-2 text-sm outline-none focus:border-indigo-400" />
-            <button onClick={onInsert} disabled={busy} className={`${btn} bg-indigo-500 text-white hover:bg-indigo-400`}><Plus className="size-4" />Inserir</button>
+              placeholder="50, 30, 70" inputMode="numeric" className="min-w-0 flex-1 rounded-lg border border-white/10 bg-neutral-900 px-3 py-2 text-sm outline-none focus:border-teal-300" />
+            <button onClick={onInsert} disabled={busy} className={`${btn} bg-teal-400 text-neutral-950 hover:bg-teal-300`}><Plus className="size-4" />Inserir</button>
           </div>
-          <label className="text-xs text-slate-400">Remover valor</label>
+          <label className="text-xs text-neutral-400">Remover valor</label>
           <div className="flex gap-2">
             <input value={rem} onChange={(e) => setRem(e.target.value)} onKeyDown={(e) => e.key === 'Enter' && onRemove()}
-              placeholder="30" inputMode="numeric" className="min-w-0 flex-1 rounded-lg border border-white/10 bg-slate-900 px-3 py-2 text-sm outline-none focus:border-rose-400" />
-            <button onClick={onRemove} disabled={busy} className={`${btn} bg-slate-800 text-rose-300 hover:bg-slate-700`}><Trash2 className="size-4" />Remover</button>
+              placeholder="30" inputMode="numeric" className="min-w-0 flex-1 rounded-lg border border-white/10 bg-neutral-900 px-3 py-2 text-sm outline-none focus:border-rose-400" />
+            <button onClick={onRemove} disabled={busy} className={`${btn} bg-neutral-800 text-rose-300 hover:bg-neutral-700`}><Trash2 className="size-4" />Remover</button>
           </div>
         </div>
 
         <div className="grid grid-cols-3 gap-2">
-          <button onClick={sample} disabled={busy} className={`${btn} bg-slate-800 hover:bg-slate-700`}><Shuffle className="size-4" />Exemplo</button>
-          <button onClick={restart} disabled={busy} className={`${btn} bg-slate-800 hover:bg-slate-700`}><RotateCcw className="size-4" />Reiniciar</button>
-          <button onClick={clear} disabled={busy} className={`${btn} bg-slate-800 hover:bg-slate-700`}><Eraser className="size-4" />Limpar</button>
+          <button onClick={sample} disabled={busy} className={`${btn} bg-neutral-800 hover:bg-neutral-700`}><Shuffle className="size-4" />Exemplo</button>
+          <button onClick={restart} disabled={busy} className={`${btn} bg-neutral-800 hover:bg-neutral-700`}><RotateCcw className="size-4" />Reiniciar</button>
+          <button onClick={clear} disabled={busy} className={`${btn} bg-neutral-800 hover:bg-neutral-700`}><Eraser className="size-4" />Limpar</button>
         </div>
 
-        <p className="text-xs text-slate-500">Ordem de inserção: {seq.length ? seq.join(' → ') : '—'}</p>
+        <p className="text-xs text-neutral-500">Ordem de inserção: {seq.length ? seq.join(' → ') : '—'}</p>
 
-        <div className="min-h-32 flex-1 overflow-y-auto rounded-lg border border-white/10 bg-slate-900/60 p-3 text-sm lg:max-h-[40vh]">
-          {log.length === 0 && <p className="text-slate-500">As explicações de cada passo aparecerão aqui.</p>}
+        <div className="min-h-32 flex-1 overflow-y-auto rounded-lg border border-white/10 bg-neutral-900/60 p-3 text-sm lg:max-h-[40vh]">
+          {log.length === 0 && <p className="text-neutral-500">As explicações de cada passo aparecerão aqui.</p>}
           <ul className="space-y-1.5">{log.map((l, i) => <li key={i} className={tone[l.tone]}>{l.text}</li>)}</ul>
         </div>
         <div className="space-y-2 rounded-lg border border-white/10 p-3">
-          <label className="text-xs text-slate-400">Salvar em Minhas Árvores</label>
+          <label className="text-xs text-neutral-400">Salvar em Minhas Árvores</label>
           <div className="flex gap-2">
-            <input value={name} maxLength={80} onChange={(e) => setName(e.target.value)} placeholder="Nome da árvore" className="min-w-0 flex-1 rounded-lg border border-white/10 bg-slate-900 px-3 py-2 text-sm outline-none focus:border-indigo-400" />
+            <input value={name} maxLength={80} onChange={(e) => setName(e.target.value)} placeholder="Nome da árvore" className="min-w-0 flex-1 rounded-lg border border-white/10 bg-neutral-900 px-3 py-2 text-sm outline-none focus:border-teal-300" />
             <button onClick={() => save(false)} disabled={saving || busy || !user} className={`${btn} bg-emerald-600 text-white hover:bg-emerald-500`}><Save className="size-4" />{savedId ? 'Atualizar' : 'Salvar'}</button>
           </div>
-          {savedId && <button onClick={() => save(true)} disabled={saving || busy || !user} className="text-xs text-indigo-300 hover:underline disabled:opacity-50">Salvar como nova árvore</button>}
-          {!user && <p className="text-xs text-slate-500"><Link href="/login" className="text-indigo-300 hover:underline">Entre</Link> ou <Link href="/cadastro" className="text-indigo-300 hover:underline">crie uma conta</Link> para salvar.</p>}
+          {savedId && <button onClick={() => save(true)} disabled={saving || busy || !user} className="text-xs text-teal-300 hover:underline disabled:opacity-50">Salvar como nova árvore</button>}
+          {!user && <p className="text-xs text-neutral-500"><Link href="/login" className="text-teal-300 hover:underline">Entre</Link> ou <Link href="/cadastro" className="text-teal-300 hover:underline">crie uma conta</Link> para salvar.</p>}
         </div>
         </>)}
         {tab === 'steps' && <StepPanel type={type} onOverride={setOverride} />}

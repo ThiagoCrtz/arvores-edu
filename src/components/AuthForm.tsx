@@ -82,14 +82,14 @@ export default function AuthForm({ mode }: { mode: AuthMode }) {
     }
   }
 
-  const input = 'w-full rounded-lg border border-white/10 bg-slate-900 px-3 py-2.5 text-sm outline-none focus:border-indigo-400';
+  const input = 'w-full rounded-lg border border-white/10 bg-neutral-900 px-3 py-2.5 text-sm outline-none focus:border-teal-300';
   return (
     <div className="mx-auto w-full max-w-sm px-4 py-16">
       <h1 className="text-2xl font-bold text-white">{copy.title}</h1>
-      <p className="mt-1 text-sm text-slate-400">{copy.subtitle}</p>
+      <p className="mt-1 text-sm text-neutral-400">{copy.subtitle}</p>
 
       {!supabaseConfigured && (
-        <p className="mt-4 rounded-lg border border-amber-500/30 bg-amber-500/10 p-3 text-sm text-amber-200">
+        <p className="mt-4 rounded-lg border border-amber-500/30 bg-amber-500/10 p-3 text-sm text-teal-200">
           Supabase ainda não configurado neste ambiente. Copie <code>.env.example</code> para <code>.env.local</code> e preencha as variáveis.
         </p>
       )}
@@ -106,18 +106,18 @@ export default function AuthForm({ mode }: { mode: AuthMode }) {
         )}
         {error && <p role="alert" className="text-sm text-rose-300">{error}</p>}
         {info && <p role="status" className="text-sm text-emerald-300">{info}</p>}
-        <button disabled={loading} className="w-full rounded-lg bg-indigo-500 py-2.5 text-sm font-medium text-white hover:bg-indigo-400 disabled:opacity-50">
+        <button disabled={loading} className="w-full rounded-lg bg-teal-400 py-2.5 text-sm font-medium text-neutral-950 hover:bg-teal-300 disabled:opacity-50">
           {loading ? 'Aguarde…' : copy.cta}
         </button>
       </form>
 
-      <div className="mt-5 space-y-1.5 text-center text-sm text-slate-400">
+      <div className="mt-5 space-y-1.5 text-center text-sm text-neutral-400">
         {mode === 'login' && (<>
-          <p><Link href="/recuperar-senha" className="text-indigo-300 hover:underline">Esqueci minha senha</Link></p>
-          <p>Não tem conta? <Link href="/cadastro" className="text-indigo-300 hover:underline">Cadastre-se</Link></p>
+          <p><Link href="/recuperar-senha" className="text-teal-300 hover:underline">Esqueci minha senha</Link></p>
+          <p>Não tem conta? <Link href="/cadastro" className="text-teal-300 hover:underline">Cadastre-se</Link></p>
         </>)}
-        {mode === 'signup' && <p>Já tem conta? <Link href="/login" className="text-indigo-300 hover:underline">Entrar</Link></p>}
-        {mode === 'forgot' && <p><Link href="/login" className="text-indigo-300 hover:underline">Voltar ao login</Link></p>}
+        {mode === 'signup' && <p>Já tem conta? <Link href="/login" className="text-teal-300 hover:underline">Entrar</Link></p>}
+        {mode === 'forgot' && <p><Link href="/login" className="text-teal-300 hover:underline">Voltar ao login</Link></p>}
       </div>
     </div>
   );

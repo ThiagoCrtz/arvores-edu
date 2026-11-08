@@ -4,7 +4,7 @@ import type { TreeNode } from '@/lib/trees/types';
 /** Miniatura estática de uma árvore (para os cartões de "Minhas Árvores"). */
 export default function MiniTree({ root }: { root: TreeNode | null }) {
   const { nodes, edges } = layoutTree(root);
-  if (!nodes.length) return <div className="grid h-28 place-items-center text-xs text-slate-500">Árvore vazia</div>;
+  if (!nodes.length) return <div className="grid h-28 place-items-center text-xs text-neutral-500">Árvore vazia</div>;
   const pos = new Map(nodes.map((n) => [n.value, n]));
   const pad = 30;
   const w = Math.max(...nodes.map((n) => n.x)) + pad * 2;

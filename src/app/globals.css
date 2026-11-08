@@ -1,12 +1,12 @@
 @import "tailwindcss";
-:root { color-scheme: dark; --ink:#f2f0e8; --muted:#9299a8; --canvas:#0b1018; --panel:#111923; --panel-raised:#172230; --line:rgba(206,220,235,.12); --accent:#f2b84b; --action:#5b7cfa; }
+:root { color-scheme: dark; --ink:#f2f0e8; --muted:#9299a8; --canvas:#090b09; --panel:#111411; --panel-raised:#191e19; --line:rgba(225,235,225,.12); --accent:#5eead4; --action:#5eead4; }
 * { box-sizing: border-box; }
 html { background:var(--canvas); }
-body { min-height:100vh; background:radial-gradient(circle at 15% -10%, rgba(91,124,250,.14), transparent 34rem), var(--canvas); color:var(--ink); font-family: "Avenir Next", "Segoe UI", sans-serif; -webkit-font-smoothing: antialiased; }
+body { min-height:100vh; background:radial-gradient(circle at 15% -10%, rgba(94,234,212,.14), transparent 34rem), var(--canvas); color:var(--ink); font-family: "Avenir Next", "Segoe UI", sans-serif; -webkit-font-smoothing: antialiased; }
 button, input { font: inherit; }
 button { transition: transform 160ms cubic-bezier(.23,1,.32,1), background-color 160ms ease, color 160ms ease, border-color 160ms ease; }
 button:active { transform:scale(.97); }
 input::placeholder { color:#687386; }
-::selection { background:rgba(242,184,75,.3); color:var(--ink); }
+::selection { background:rgba(94,234,212,.3); color:var(--ink); }
 @keyframes pop { from { transform: scale(0); opacity: 0 } to { transform: scale(1); opacity: 1 } }
 .node-pop { animation: pop .35s ease-out; transform-box: fill-box; transform-origin: center; }
